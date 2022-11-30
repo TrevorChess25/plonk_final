@@ -2,7 +2,9 @@
 #include "game_state.h"
 #include "main_menu.h"
 using namespace std;
-
+//NOTES:
+// code syntax: 'this->' is not always needed
+// It is used whenever a var is used outside its home class
 game_state core_state;
 
 int main()
