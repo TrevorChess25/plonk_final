@@ -1,5 +1,6 @@
 #pragma once
 #include<SFML/Graphics.hpp>
+using namespace std;
 
 class tiny_state {
 public:
@@ -34,9 +35,9 @@ public:
 			this->state->Init(this->window);
 		}
 	}
-	//calls the state's update method (from tiny)
 	void Update() {
 		if (this->state != NULL) {
+			//calls the state's update method (from tiny)
 			this->state->Update(this->window);
 		}
 	}

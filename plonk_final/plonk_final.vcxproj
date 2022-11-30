@@ -144,11 +144,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="test_state.cpp" />
+    <ClCompile Include="main_menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_state.h" />
-    <ClInclude Include="test_state.h" />
+    <ClInclude Include="main_menu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
