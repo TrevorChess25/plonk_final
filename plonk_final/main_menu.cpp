@@ -37,7 +37,27 @@ void main_menu::Init(sf::RenderWindow* window) {
 	this->quit->setPosition(quit_x, quit_y);
 };
 void main_menu::Update(sf::RenderWindow* window) {
-	
+	//If Up is pressed and it wasn't on the last frame
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && !this->upKey) {
+		//if quit selected, now play is
+		this->selected -= 1;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) && !this->downKey) {
+		//if play selected, now quit is
+		this->selected += 1;
+	}
+	//if down is pressed when quit is selected, wrap around to play
+	if (this->selected > 1) {
+		this->selected = 0;
+	}
+	//if up is pressed when play is selected, wrap around to quit
+	if (this->selected < 0) {
+		this->selected = 1;
+	}
+
+	//creates shorter alias to check for key presses
+	this->upKey = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up);
+	this->downKey = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down);
 };
 void main_menu::Render(sf::RenderWindow* window) {
 	//sets default color to white
