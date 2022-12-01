@@ -56,6 +56,16 @@ void main_menu::Update(sf::RenderWindow* window) {
 	}
 
 	//creates shorter alias to check for key presses
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return)) {
+		switch (this->selected) {
+		case 0:
+			break;
+		//if quit is selected when enter is pressed, quit game 
+		case 1:
+			quit_game = true;
+			break;
+		}
+	}
 	this->upKey = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up);
 	this->downKey = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down);
 };

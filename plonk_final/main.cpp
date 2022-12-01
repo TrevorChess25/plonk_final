@@ -6,6 +6,7 @@ using namespace std;
 // code syntax: 'this->' is not always needed
 // It is used whenever a var is used outside its home class
 game_state core_state;
+bool quit_game = false;
 
 int main()
 {
@@ -31,6 +32,10 @@ int main()
         core_state.Update();
         core_state.Render();
         game_window.display();
+
+        if (quit_game) {
+            game_window.close();
+        }
     }
     return 0;
 }
