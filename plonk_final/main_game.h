@@ -1,7 +1,7 @@
 #pragma once
 #include "game_state.h"
-//inherits all game methods to conduct test
-class main_menu: public tiny_state {
+
+class main_game : public tiny_state {
 public:
 	//NOTE: windows are passed by ref
 	//if we pass by val, we have to return the obj

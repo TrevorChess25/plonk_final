@@ -1,4 +1,5 @@
 #include "main_menu.h"
+#include "main_game.h"
 using namespace std;
 void main_menu::Init(sf::RenderWindow* window) {
 	//play is selected by default
@@ -59,6 +60,7 @@ void main_menu::Update(sf::RenderWindow* window) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return)) {
 		switch (this->selected) {
 		case 0:
+			core_state.set_state(new main_game());
 			break;
 		//if quit is selected when enter is pressed, quit game 
 		case 1:
@@ -89,4 +91,6 @@ void main_menu::Render(sf::RenderWindow* window) {
 void main_menu::Destroy(sf::RenderWindow* window) {
 	delete this->font;
 	delete this->title;
+	delete this->play;
+	delete this->quit;
 };
