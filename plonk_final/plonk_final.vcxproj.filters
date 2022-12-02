@@ -22,6 +22,9 @@
     <Filter Include="Source Files\States">
       <UniqueIdentifier>{0c407754-5243-4d33-b98a-708eb1981419}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Entities">
+      <UniqueIdentifier>{4e519fca-4629-43b7-8c98-e93df9ca984c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -43,6 +46,12 @@
     </ClInclude>
     <ClInclude Include="main_menu.h">
       <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="paddle_player.h">
+      <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

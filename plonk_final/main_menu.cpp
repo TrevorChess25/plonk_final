@@ -6,7 +6,7 @@ void main_menu::Init(sf::RenderWindow* window) {
 	this->selected = 0;
 	//allocates memory for font
 	this->font = new sf::Font();
-	this->font->loadFromFile("font.ttf");
+	this->font->loadFromFile("Graphics/font.ttf");
 
 	this->title = new sf::Text("Plonk", *this->font,192U);
 	//store center of title text in x&y vars
@@ -55,11 +55,11 @@ void main_menu::Update(sf::RenderWindow* window) {
 	if (this->selected < 0) {
 		this->selected = 1;
 	}
-
-	//creates shorter alias to check for key presses
+	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return)) {
 		switch (this->selected) {
 		case 0:
+			//if enter is pressed, when play is selected begin game
 			core_state.set_state(new main_game());
 			break;
 		//if quit is selected when enter is pressed, quit game 
@@ -68,6 +68,7 @@ void main_menu::Update(sf::RenderWindow* window) {
 			break;
 		}
 	}
+	//creates shorter alias to check for key presses
 	this->upKey = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up);
 	this->downKey = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down);
 };

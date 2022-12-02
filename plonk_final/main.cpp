@@ -1,6 +1,7 @@
 #include<iostream>
 #include "game_state.h"
 #include "main_menu.h"
+#include<Windows.h>
 using namespace std;
 //NOTES:
 // code syntax: 'this->' is not always needed
@@ -36,6 +37,9 @@ int main()
         if (quit_game) {
             game_window.close();
         }
+        //game loop runs every 5 miliseconds
+        //1 loop every 1/200 seconds = 200 fps
+        Sleep(5);
     }
     return 0;
 }

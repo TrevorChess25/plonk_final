@@ -148,9 +148,11 @@
     <ClCompile Include="main_menu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="entity.h" />
     <ClInclude Include="game_state.h" />
     <ClInclude Include="main_game.h" />
     <ClInclude Include="main_menu.h" />
+    <ClInclude Include="paddle_player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
