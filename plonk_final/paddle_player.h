@@ -35,6 +35,15 @@ public:
 			break;
 		}
 		Entity::Update();
+
+		//screen bottom collision
+		if (this->getPosition().y < 0) {
+			this->move(0, 20.0f);
+		}
+		//screen top collision
+		if (this->getPosition().y + this->getGlobalBounds().height > 600) {
+			this->move(0, -20.0f);
+		}
 	}
 private:
 	int player_num;
