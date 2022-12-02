@@ -11,5 +11,6 @@ public:
 	void Render(sf::RenderWindow* window);
 	void Destroy(sf::RenderWindow* window);
 private:
-	paddle_player* paddle;
+	paddle_player* player1;
+	paddle_player* player2;
 };

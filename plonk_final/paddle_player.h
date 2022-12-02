@@ -1,8 +1,9 @@
 #pragma once
+#include<iostream>
 #include "entity.h"
 class paddle_player:public Entity {
 public:
-	paddle_player(int player_number) {
+	paddle_player(int player_num) {
 		this->player_num = player_num;
 		//if player num is 0 load p1's sprite
 		//otherwise load p2's sprite
