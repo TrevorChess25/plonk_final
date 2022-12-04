@@ -15,10 +15,12 @@ void ball::Update() {
 	p2_collide = this->check_collision(this->player2);
 	ball_y_pos = this->getPosition().y;
 	ball_top_edge = this->getGlobalBounds().height;
+
 	//paddle collision
 	if (p1_collide || p2_collide) {
 		this->velocity.x *= -1;
 	}
+
 	//screen top & bottom collision
 	if (ball_y_pos < 0 || ball_y_pos + ball_top_edge > 600) {
 		this->velocity.y *= -1;
