@@ -5,21 +5,32 @@ ball::ball(paddle_player* player1, paddle_player* player2) {
 	//declare player vars for collision checks
 	this->player1 = player1;
 	this->player2 = player2;
+
+
 	//set ball's init velocity
 	this->velocity.x = 0.75f;
 }
 
-void ball::Update() {
-	//shorter alias for paddle collision checks
+void ball::Update() 
+{
 	p1_collide = this->check_collision(this->player1);
 	p2_collide = this->check_collision(this->player2);
+	if (p1_collide || p2_collide )
+	{
+		this->velocity.x *= -1;
+	}
+	if (this->getPosition().y < 0 || this->getPosition().y + this->getGlobalBounds().height > 600)
+	{
+		this->velocity.y *= -1;
+	}
+	//shorter alias for paddle collision checks
 	ball_y_pos = this->getPosition().y;
 	ball_top_edge = this->getGlobalBounds().height;
 	//paddle collision
-	if (p1_collide || p2_collide) {
-		this->velocity.x *= -1;
-	}
-	//screen top & bottom collision
+	//if (p1_collide || p2_collide) {
+//		this->velocity.x *= -1;
+	
+	////screen top & bottom collision
 	if (ball_y_pos < 0 || ball_y_pos + ball_top_edge > 600) {
 		this->velocity.y *= -1;
 	}

@@ -27,6 +27,7 @@ void main_game::Update(sf::RenderWindow* window) {
 	//paddles are updated before menu is entered 
 	//if paddle was updated after exiting to menu
 	//they would continue to consume resources
+	this->ball_obj->Update();
 	this->player1->Update();
 	this->player2->Update();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
