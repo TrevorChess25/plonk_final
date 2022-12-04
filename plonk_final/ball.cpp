@@ -1,10 +1,10 @@
 #include "ball.h"
 ball::ball(paddle_player* player1, paddle_player* player2) {
+	//load ball graphic
+	this->Load("ball.png");
 	//declare player vars for collision checks
 	this->player1 = player1;
 	this->player2 = player2;
-	//load ball graphic
-	this->Load("ball.png");
 	//set ball's init velocity
 	this->velocity.x = 0.75f;
 }
