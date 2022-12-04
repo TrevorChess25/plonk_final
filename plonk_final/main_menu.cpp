@@ -38,7 +38,7 @@ void main_menu::Init(sf::RenderWindow* window) {
 	this->quit->setPosition(quit_x, quit_y);
 };
 void main_menu::Update(sf::RenderWindow* window) {
-	//If Up is pressed and it wasn't on the last frame
+	//If Up is pressed and it wasn't on the last iteration 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && !this->upKey) {
 		//if quit selected, now play is
 		this->selected -= 1;

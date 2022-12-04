@@ -143,11 +143,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ball.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main_game.cpp" />
     <ClCompile Include="main_menu.cpp" />
+    <ClCompile Include="paddle_player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ball.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="game_state.h" />
     <ClInclude Include="main_game.h" />
