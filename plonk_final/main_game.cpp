@@ -7,6 +7,8 @@ void main_game::Init(sf::RenderWindow* window) {
 	this->score1 = new Score(*font, 64U);
 	this->score2 = new Score(*font, 64U);
 
+	this->score2->setPosition(window->getSize().x - this->score2->getGlobalBounds().width, 0);
+
 	//alias for window width & height
 	//NOTE: vars not in header bc win can be resized
 	int window_w = window->getSize().x;
@@ -14,13 +16,14 @@ void main_game::Init(sf::RenderWindow* window) {
 
 	//init for player's paddle objects
 	this->player1 = new paddle_player(0);
-	this->player1->setPosition(0, window->getSize().y / 2 + this->player1->getGlobalBounds().height / 4);
+
 
 	this->player2 = new paddle_player(1);
-	this->player2->setPosition(window->getSize().x - this->player2->getGlobalBounds().width, window->getSize().y / 2 + this->player2->getGlobalBounds().height / 4);
 
 	this->ball_obj = new ball(this->score1, this->score2, this->player1, this->player2);
-	this->ball_obj->setPosition(window_w/ 2, window_h/ 2);
+
+	this->ball_obj->Reset(window);
+	//this->ball_obj->setPosition(window_w/ 2, window_h/ 2);
 
 
 	//alias for width of p2's paddle

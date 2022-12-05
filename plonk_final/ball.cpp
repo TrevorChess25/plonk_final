@@ -11,8 +11,10 @@ ball::ball(Score* score1, Score* score2, paddle_player* player1, paddle_player* 
 
 
 	//set ball's init velocity
-	this->velocity.x = 1.0f;
-	this->velocity.y = 1.0f;
+	//this->velocity.x = 1.0f;
+	//this->velocity.y = 1.0f;
+
+
 }
 
 void ball::Update(sf::RenderWindow* window) 
@@ -36,15 +38,25 @@ void ball::Update(sf::RenderWindow* window)
 		this->velocity.y *= -1;
 	}
 
-	if (this->getPosition().x < this->player1->getGlobalBounds().width)
-	{
-		this->score1->increment_score();
-		this->setPosition(window->getSize().x / 2, window->getSize().y / 2);
-	}
-	if (this->getPosition().x > window->getSize().x  - this ->player2->getGlobalBounds().width)
+	if (this->getPosition().x < this->player1->getGlobalBounds().width - 5)
 	{
 		this->score2->increment_score();
-		this->setPosition(window->getSize().x / 2, window->getSize().y /2);
+		this->Reset(window);
+	}
+	if (this->getPosition().x + this->getGlobalBounds().width > window->getSize().x - this->player2->getGlobalBounds().width + 5)
+	{
+		this->score1->increment_score();
+		this->Reset(window);
 	}
 	Entity::Update();
+}
+
+void ball::Reset(sf::RenderWindow* window)
+{
+	this->velocity.x = 1.0f;
+	this->velocity.y = 1.0f;
+	this->setPosition(window->getSize().x / 2, window->getSize().y / 2);
+	this->setPosition(window->getSize().x / 2, window->getSize().y / 2);
+	this->player1->setPosition(0, window->getSize().y / 2 + this->player1->getGlobalBounds().height / 4);
+	this->player2->setPosition(window->getSize().x - this->player2->getGlobalBounds().width, window->getSize().y / 2 + this->player2->getGlobalBounds().height / 4);
 }
