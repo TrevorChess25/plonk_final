@@ -5,6 +5,7 @@ void main_game::Init(sf::RenderWindow* window) {
 	this->font = new sf::Font();
 	this->font->loadFromFile("Graphics/font.ttf");
 	this->score1 = new Score(*font, 64U);
+	this->score2 = new Score(*font, 64U);
 
 	//alias for window width & height
 	//NOTE: vars not in header bc win can be resized
@@ -13,8 +14,12 @@ void main_game::Init(sf::RenderWindow* window) {
 
 	//init for player's paddle objects
 	this->player1 = new paddle_player(0);
+	this->player1->setPosition(0, window->getSize().y / 2 + this->player1->getGlobalBounds().height / 4);
+
 	this->player2 = new paddle_player(1);
-	this->ball_obj = new ball(this->player1, this->player2);
+	this->player2->setPosition(window->getSize().x - this->player2->getGlobalBounds().width, window->getSize().y / 2 + this->player2->getGlobalBounds().height / 4);
+
+	this->ball_obj = new ball(this->score1, this->score2, this->player1, this->player2);
 	this->ball_obj->setPosition(window_w/ 2, window_h/ 2);
 
 
@@ -32,24 +37,27 @@ void main_game::Update(sf::RenderWindow* window) {
 	//paddles are updated before menu is entered 
 	//if paddle was updated after exiting to menu
 	//they would continue to consume resources
-	this->ball_obj->Update();
+	this->ball_obj->Update(window);
 	this->player1->Update();
 	this->player2->Update();
 	this->score1->Update();
+	this->score2->Update();
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
 		core_state.set_state(new main_menu());
 	}
 };
 void main_game::Render(sf::RenderWindow* window) {
-	window->draw(*this->score1);
 	window->draw(*this->player1);
 	window->draw(*this->player2);
 	window->draw(*this->ball_obj);
+	window->draw(*this->score1);
+	window->draw(*this->score2);
 };
 void main_game::Destroy(sf::RenderWindow* window) {
 	delete this->player1;
 	delete this->player2;
 	delete this->ball_obj;
 	delete this->score1;
+	delete this->score2;
 };

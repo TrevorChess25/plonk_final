@@ -17,6 +17,8 @@ private:
 	paddle_player* player2;
 	ball* ball_obj;
 	Score* score1;
+	Score* score2;
+
 
 	sf::Font* font;
 };

@@ -1,11 +1,15 @@
 #pragma once
 #include "paddle_player.h"
+#include "score.h"
+
 class ball : public Entity {
 public:
 	//prototypes for ball funcs
-	ball(paddle_player* player1, paddle_player* player2);
-	void Update();
+	ball(Score* score1, Score* score2, paddle_player* player1, paddle_player* player2);
+	void Update(sf::RenderWindow* window);
 private:
+	Score* score1;
+	Score* score2;
 	//paddle refs are needed to check collision
 	paddle_player* player1;
 	paddle_player* player2;
