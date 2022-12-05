@@ -8,7 +8,8 @@ ball::ball(paddle_player* player1, paddle_player* player2) {
 
 
 	//set ball's init velocity
-	this->velocity.x = 0.75f;
+	this->velocity.x = 1.0f;
+	this->velocity.y = 1.0f;
 }
 
 void ball::Update() 
