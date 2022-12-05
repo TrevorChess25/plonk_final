@@ -1,20 +1,14 @@
 #include "ball.h"
 ball::ball(Score* score1, Score* score2, paddle_player* player1, paddle_player* player2) {
-
+	
 	//load ball graphic
 	this->Load("ball.png");
 	this->score1 = score1;
 	this->score2 = score2;
+
 	//declare player vars for collision checks
 	this->player1 = player1;
 	this->player2 = player2;
-
-
-	//set ball's init velocity
-	//this->velocity.x = 1.0f;
-	//this->velocity.y = 1.0f;
-
-
 }
 
 void ball::Update(sf::RenderWindow* window) 
@@ -29,21 +23,31 @@ void ball::Update(sf::RenderWindow* window)
 	}
 
 	//shorter alias for paddle collision checks
+	ball_x_pos = this->getPosition().x;
 	ball_y_pos = this->getPosition().y;
-	ball_top_edge = this->getGlobalBounds().height;
+	ball_h = this->getGlobalBounds().height;
+	ball_w = this->getGlobalBounds().width;
+	window_h = window->getSize().y;
+	window_w = window->getSize().x;
+	scrn_left_bnd = this->player1->getGlobalBounds().width - 5.0f;
+	scrn_right_bnd = this->player2->getGlobalBounds().width + 5.0f;
+
 
 	//screen top & bottom collision
-	if (ball_y_pos < 0 || (ball_y_pos + ball_top_edge) > window->getSize().y)
+	if (ball_y_pos < 0 || (ball_y_pos + ball_h) > window_h)
 	{
 		this->velocity.y *= -1;
 	}
 
-	if (this->getPosition().x < this->player1->getGlobalBounds().width - 5)
+	//If ball gets past p1's paddle, p2 gets a point
+	if (ball_x_pos < scrn_left_bnd)
 	{
 		this->score2->increment_score();
 		this->Reset(window);
 	}
-	if (this->getPosition().x + this->getGlobalBounds().width > window->getSize().x - this->player2->getGlobalBounds().width + 5)
+
+	//If ball gets past p2's paddle, p1 gets a point
+	if (ball_x_pos > window_w - scrn_right_bnd)
 	{
 		this->score1->increment_score();
 		this->Reset(window);
@@ -53,10 +57,37 @@ void ball::Update(sf::RenderWindow* window)
 
 void ball::Reset(sf::RenderWindow* window)
 {
-	this->velocity.x = 1.0f;
-	this->velocity.y = 1.0f;
+	//seed RNG for ball starting velocity
+	srand((unsigned)time(NULL));
+	//generate random number from 0-3
+	int v_rand = rand() % 4;
+
+	//make ball go 1 of 4 diagonals
+	//based on random output
+	switch (v_rand) {
+	case 0:
+	default:
+		this->velocity.x = -4.75f;
+		this->velocity.y = -4.75f;
+		break;
+	case 1:
+		this->velocity.x = -4.75f;
+		this->velocity.y = 4.75f;
+		break;
+	case 2:
+		this->velocity.x = 4.75f;
+		this->velocity.y = -4.75f;
+		break;
+	case 3:
+		this->velocity.x = 4.75f;
+		this->velocity.y = 4.75f;
+		break;
+	}
+
+	//set ball position to window's center
 	this->setPosition(window->getSize().x / 2, window->getSize().y / 2);
 	this->setPosition(window->getSize().x / 2, window->getSize().y / 2);
+
 	this->player1->setPosition(0, window->getSize().y / 2 + this->player1->getGlobalBounds().height / 4);
 	this->player2->setPosition(window->getSize().x - this->player2->getGlobalBounds().width, window->getSize().y / 2 + this->player2->getGlobalBounds().height / 4);
 }
