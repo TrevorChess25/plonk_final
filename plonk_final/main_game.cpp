@@ -16,11 +16,11 @@ void main_game::Init(sf::RenderWindow* window) {
 
 	//init for player's paddle objects
 	this->player1 = new paddle_player(0);
-
-
 	this->player2 = new paddle_player(1);
 
-	this->ball_obj = new ball(this->score1, this->score2, this->player1, this->player2);
+	//init for ball object
+	this->ball_obj = new ball(this->score1, this->score2,
+		this->player1, this->player2, window);
 
 	this->ball_obj->Reset(window);
 	//this->ball_obj->setPosition(window_w/ 2, window_h/ 2);

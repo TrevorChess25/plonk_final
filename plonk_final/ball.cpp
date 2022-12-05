@@ -1,6 +1,9 @@
 #include "ball.h"
-ball::ball(Score* score1, Score* score2, paddle_player* player1, paddle_player* player2) {
-	
+//ref to window is need to calc width and height
+ball::ball(Score* score1, Score* score2,
+	paddle_player* player1, paddle_player* player2,
+	sf::RenderWindow* window) {
+
 	//load ball graphic
 	this->Load("ball.png");
 	this->score1 = score1;
@@ -9,31 +12,40 @@ ball::ball(Score* score1, Score* score2, paddle_player* player1, paddle_player* 
 	//declare player vars for collision checks
 	this->player1 = player1;
 	this->player2 = player2;
+
+	//create alias that don't need to be updated:
+	//alias for ball properties
+	ball_h = 32;
+	ball_w = 32;
+	
+	//alias for player's heights
+	p1_h = this->player1->getGlobalBounds().height;
+	p2_w = this->player2->getGlobalBounds().width;
+	p2_h = this->player2->getGlobalBounds().height;
+	
+	//alias for window properties
+	window_h = window->getSize().y;
+	window_w = window->getSize().x;
+	scrn_left_bnd = this->player1->getGlobalBounds().width - 5.0f;
+	scrn_right_bnd = this->player2->getGlobalBounds().width + 5.0f;
 }
 
-void ball::Update(sf::RenderWindow* window) 
+void ball::Update(sf::RenderWindow* window)
 {
 	//short aliases for paddle collision
 	p1_collide = this->check_collision(this->player1);
 	p2_collide = this->check_collision(this->player2);
 
-	if (p1_collide || p2_collide )
+	if (p1_collide || p2_collide)
 	{
 		this->velocity.x *= -1;
 	}
 
-	//shorter alias for paddle collision checks
+	//shorter alias for ball position
 	ball_x_pos = this->getPosition().x;
 	ball_y_pos = this->getPosition().y;
-	ball_h = this->getGlobalBounds().height;
-	ball_w = this->getGlobalBounds().width;
-	window_h = window->getSize().y;
-	window_w = window->getSize().x;
-	scrn_left_bnd = this->player1->getGlobalBounds().width - 5.0f;
-	scrn_right_bnd = this->player2->getGlobalBounds().width + 5.0f;
 
-
-	//screen top & bottom collision
+	//screen top and bottom collision, respectively
 	if (ball_y_pos < 0 || (ball_y_pos + ball_h) > window_h)
 	{
 		this->velocity.y *= -1;
@@ -85,9 +97,14 @@ void ball::Reset(sf::RenderWindow* window)
 	}
 
 	//set ball position to window's center
-	this->setPosition(window->getSize().x / 2, window->getSize().y / 2);
-	this->setPosition(window->getSize().x / 2, window->getSize().y / 2);
+	this->setPosition(window_w / 2, window_h / 2);
+	
+	//short alias for player's heights
+	p1_h = this->player1->getGlobalBounds().height;
+	p2_w = this->player2->getGlobalBounds().width;
+	p2_h = this->player2->getGlobalBounds().height;
 
-	this->player1->setPosition(0, window->getSize().y / 2 + this->player1->getGlobalBounds().height / 4);
-	this->player2->setPosition(window->getSize().x - this->player2->getGlobalBounds().width, window->getSize().y / 2 + this->player2->getGlobalBounds().height / 4);
+	//reset paddle postions
+	this->player1->setPosition(0, window_h / 2 + p1_h / 4);
+	this->player2->setPosition(window_w - p2_w, window_h / 2 + p2_h / 4);
 }

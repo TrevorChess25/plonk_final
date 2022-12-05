@@ -12,7 +12,7 @@ bool quit_game = false;
 int main()
 {
     //window is created
-    sf::RenderWindow game_window(sf::VideoMode(900, 600), "Plonk");
+    sf::RenderWindow game_window(sf::VideoMode(900, 600), "Plonk", sf::Style::Close);
 
     core_state.set_window(&game_window);
     core_state.set_state(new main_menu());
