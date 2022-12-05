@@ -25,6 +25,9 @@
     <Filter Include="Header Files\Entities">
       <UniqueIdentifier>{4e519fca-4629-43b7-8c98-e93df9ca984c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{76b8b244-0392-4132-8ec0-2c658c77a57e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,14 +39,17 @@
     <ClCompile Include="main_game.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="paddle_player.cpp">
-      <Filter>Header Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="ball.cpp">
-      <Filter>Header Files\Entities</Filter>
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="paddle_player.cpp">
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="score.cpp">
-      <Filter>Header Files\Entities</Filter>
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="paddle_ai.cpp">
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +72,12 @@
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="score.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="paddle_ai.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="paddle.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>

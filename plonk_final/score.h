@@ -1,5 +1,4 @@
 #pragma once
-
 #include <SFML/graphics.hpp>
 
 class Score : public sf::Text

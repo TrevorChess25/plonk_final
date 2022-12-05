@@ -1,7 +1,7 @@
 #include "ball.h"
 //ref to window is need to calc width and height
 ball::ball(Score* score1, Score* score2,
-	paddle_player* player1, paddle_player* player2,
+	paddle* player1, paddle* player2,
 	sf::RenderWindow* window) {
 
 	//load ball graphic
@@ -9,14 +9,20 @@ ball::ball(Score* score1, Score* score2,
 	this->score1 = score1;
 	this->score2 = score2;
 
-	//declare player vars for collision checks
+	//declare player objs for collision checks
 	this->player1 = player1;
 	this->player2 = player2;
+
+	//create and load sound objs
+	this->buffer = new sf::SoundBuffer;
+	this->buffer->loadFromFile("Sounds/bounce.wav");
+	this->sound = new sf::Sound(*this->buffer);
 
 	//create alias that don't need to be updated:
 	//alias for ball properties
 	ball_h = 32;
 	ball_w = 32;
+	ball_spd = 7.2f;
 	
 	//alias for player's heights
 	p1_h = this->player1->getGlobalBounds().height;
@@ -38,7 +44,9 @@ void ball::Update(sf::RenderWindow* window)
 
 	if (p1_collide || p2_collide)
 	{
+		//bounce ball other direction
 		this->velocity.x *= -1;
+		this->sound->play();
 	}
 
 	//shorter alias for ball position
@@ -49,6 +57,8 @@ void ball::Update(sf::RenderWindow* window)
 	if (ball_y_pos < 0 || (ball_y_pos + ball_h) > window_h)
 	{
 		this->velocity.y *= -1;
+		this->sound->play();
+
 	}
 
 	//If ball gets past p1's paddle, p2 gets a point
@@ -79,20 +89,20 @@ void ball::Reset(sf::RenderWindow* window)
 	switch (v_rand) {
 	case 0:
 	default:
-		this->velocity.x = -4.75f;
-		this->velocity.y = -4.75f;
+		this->velocity.x = -ball_spd;
+		this->velocity.y = -ball_spd;
 		break;
 	case 1:
-		this->velocity.x = -4.75f;
-		this->velocity.y = 4.75f;
+		this->velocity.x = -ball_spd;
+		this->velocity.y = ball_spd;
 		break;
 	case 2:
-		this->velocity.x = 4.75f;
-		this->velocity.y = -4.75f;
+		this->velocity.x = ball_spd;
+		this->velocity.y = -ball_spd;
 		break;
 	case 3:
-		this->velocity.x = 4.75f;
-		this->velocity.y = 4.75f;
+		this->velocity.x = ball_spd;
+		this->velocity.y = ball_spd;
 		break;
 	}
 
@@ -107,4 +117,9 @@ void ball::Reset(sf::RenderWindow* window)
 	//reset paddle postions
 	this->player1->setPosition(0, window_h / 2 + p1_h / 4);
 	this->player2->setPosition(window_w - p2_w, window_h / 2 + p2_h / 4);
+}
+
+ball::~ball() {
+	delete this->sound;
+	delete this->buffer;
 }

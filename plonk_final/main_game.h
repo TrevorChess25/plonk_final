@@ -1,6 +1,7 @@
 #pragma once
 #include "game_state.h"
 #include "paddle_player.h"
+#include "paddle_ai.h"
 #include "ball.h"
 #include "score.h"
 
@@ -14,7 +15,7 @@ public:
 	void Destroy(sf::RenderWindow* window);
 private:
 	paddle_player* player1;
-	paddle_player* player2;
+	paddle_ai* player2;
 	ball* ball_obj;
 	Score* score1;
 	Score* score2;

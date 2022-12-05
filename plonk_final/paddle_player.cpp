@@ -12,6 +12,8 @@ paddle_player::paddle_player (int player_num) {
 			this->Load("paddle2.png");
 			break;
 		}
+		//alias for paddle height
+		paddle_h = this->getGlobalBounds().height;
 	}
 
 	//calculates vertical velocity and updates via Entity's method
@@ -39,7 +41,7 @@ void paddle_player::Update() {
 		this->move(0, 20.0f);
 	}
 	//screen top collision
-	if (this->getPosition().y + this->getGlobalBounds().height > 600) {
+	if (this->getPosition().y + paddle_h > 600) {
 		this->move(0, -20.0f);
 	}
 }
