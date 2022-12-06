@@ -23,24 +23,37 @@ void paddle_ai::set_ball(ball* ball_obj) {
 	this->ball_obj = ball_obj;
 }
 
-//calculates vertical velocity and updates via Entity's method
 void paddle_ai::Update() {
 	//shorter aliases for paddle & ball
 	ball_y_pos = this->ball_obj->getPosition().y;
-	paddle_center = this->getPosition().y + this->getGlobalBounds().height / 2;
+	paddle_center = this->getPosition().y + paddle_h / 2;
 
+	//alias for checking if paddle goes off-screen next update
+	paddle_over_top = this->getPosition().y + paddle_h + 7.2f > 600;
+	paddle_under_btm = this->getPosition().y - paddle_h - 7.2f < 0;
+
+	//if we didn't have this paddle would move
+	//before ball was created
 	if (this->ball_obj != NULL) {
-		//if paddle is below ball, move up
-		if (paddle_center < ball_y_pos) {
-			this->move(0, 7.2f);
+		//if paddle will be over top or under bottom 
+		//next update, don't keep moving
+	
+		if (!paddle_over_top) {
+			//if paddle is below ball, move up
+			if (paddle_center < ball_y_pos) {
+				this->move(0, 7.2f);
+			}
 		}
 
-		//if paddle is above ball, move down
-		if (paddle_center > this->ball_obj->getPosition().y) {
-			this->move(0, -7.2f);
+		if (!paddle_under_btm) {
+			//if paddle is above ball, move down
+			if (paddle_center > ball_y_pos) {
+				this->move(0, -7.2f);
+			}
 		}
 	}
 
+	//calculates vertical velocity and updates via Entity's method
 	Entity::Update();
 
 	//screen bottom collision

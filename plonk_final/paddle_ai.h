@@ -11,4 +11,5 @@ public:
 private:
 	ball* ball_obj;
 	int player_num, ball_y_pos, paddle_h, paddle_center;
+	bool paddle_over_top, paddle_under_btm;
 };
