@@ -6,7 +6,9 @@ using namespace std;
 //NOTES:
 // code syntax: 'this->' is not always needed
 // It is used whenever a var is used outside its home class
+
 game_state core_state;
+//quit game starts false so prgm can run
 bool quit_game = false;
 
 int main()

@@ -1,7 +1,11 @@
 #pragma once
 #include "game_state.h"
-//inherits all game methods to conduct test
-class main_menu: public tiny_state {
+#include "paddle_player.h"
+#include "paddle_ai.h"
+#include "ball.h"
+#include "score.h"
+
+class one_p_game : public tiny_state {
 public:
 	//NOTE: windows are passed by ref
 	//if we pass by val, we have to return the obj
@@ -10,11 +14,10 @@ public:
 	void Render(sf::RenderWindow* window);
 	void Destroy(sf::RenderWindow* window);
 private:
+	paddle_player* player1;
+	paddle_ai* player2;
+	ball* ball_obj;
+	Score* score1;
+	Score* score2;
 	sf::Font* font;
-	sf::Text* title;
-	sf::Text* one_p;
-	sf::Text* two_p;
-	sf::Text* quit;
-	int selected;
-	bool upKey, downKey;
 };

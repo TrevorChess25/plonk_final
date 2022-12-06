@@ -145,22 +145,24 @@
   <ItemGroup>
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="main_game.cpp" />
+    <ClCompile Include="one_p_game.cpp" />
     <ClCompile Include="main_menu.cpp" />
     <ClCompile Include="paddle_ai.cpp" />
     <ClCompile Include="paddle_player.cpp" />
     <ClCompile Include="score.cpp" />
+    <ClCompile Include="two_p_game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ball.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="game_state.h" />
-    <ClInclude Include="main_game.h" />
+    <ClInclude Include="one_p_game.h" />
     <ClInclude Include="main_menu.h" />
     <ClInclude Include="paddle.h" />
     <ClInclude Include="paddle_ai.h" />
     <ClInclude Include="paddle_player.h" />
     <ClInclude Include="score.h" />
+    <ClInclude Include="two_p_game.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

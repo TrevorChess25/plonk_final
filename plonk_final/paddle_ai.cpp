@@ -4,6 +4,7 @@
 paddle_ai::paddle_ai(int player_num) {
 	this->player_num = player_num;
 	this->ball_obj = ball_obj;
+	this->ai_spd = 4.75f;
 
 	//if player num is 0 load p1's sprite
 	//otherwise load p2's sprite
@@ -34,12 +35,12 @@ void paddle_ai::Update() {
 		
 		//if paddle is below ball, move up
 		if (paddle_center < ball_y_pos) {
-				this->move(0, 7.2f);
+				this->move(0, ai_spd);
 		}
 
 		//if paddle is above ball, move down
 		if (paddle_center > ball_y_pos) {
-			this->move(0, -7.2f);
+			this->move(0, -ai_spd);
 		}
 	}
 

@@ -1,13 +1,15 @@
-#include "main_game.h"
+#include "one_p_game.h"
 #include "main_menu.h"
 
-void main_game::Init(sf::RenderWindow* window) {
+void one_p_game::Init(sf::RenderWindow* window) {
 	this->font = new sf::Font();
 	this->font->loadFromFile("Graphics/font.ttf");
 	this->score1 = new Score(*font, 64U);
 	this->score2 = new Score(*font, 64U);
 
-	this->score2->setPosition(window->getSize().x - this->score2->getGlobalBounds().width, 0);
+	//places score2 on other side of screen
+	this->score2->setPosition(window->getSize().x -
+		this->score2->getGlobalBounds().width, 0);
 
 	//alias for window width & height
 	//NOTE: vars not in header bc win can be resized
@@ -22,6 +24,7 @@ void main_game::Init(sf::RenderWindow* window) {
 	this->ball_obj = new ball(this->score1, this->score2,
 		this->player1, this->player2, window);
 
+	//this line is needed for ai ball tracking
 	this->player2->set_ball(this->ball_obj);
 
 	//reset ball to center of window
@@ -37,7 +40,7 @@ void main_game::Init(sf::RenderWindow* window) {
 	this->player1->Load("paddle1.png");
 	this->player2->Load("paddle2.png");
 };
-void main_game::Update(sf::RenderWindow* window) {
+void one_p_game::Update(sf::RenderWindow* window) {
 	//paddles are updated before menu is entered 
 	//if paddle was updated after exiting to menu
 	//they would continue to consume resources
@@ -51,14 +54,14 @@ void main_game::Update(sf::RenderWindow* window) {
 		core_state.set_state(new main_menu());
 	}
 };
-void main_game::Render(sf::RenderWindow* window) {
+void one_p_game::Render(sf::RenderWindow* window) {
 	window->draw(*this->player1);
 	window->draw(*this->player2);
 	window->draw(*this->ball_obj);
 	window->draw(*this->score1);
 	window->draw(*this->score2);
 };
-void main_game::Destroy(sf::RenderWindow* window) {
+void one_p_game::Destroy(sf::RenderWindow* window) {
 	delete this->player1;
 	delete this->player2;
 	delete this->ball_obj;

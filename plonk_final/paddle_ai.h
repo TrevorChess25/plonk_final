@@ -12,4 +12,5 @@ private:
 	ball* ball_obj;
 	int player_num, ball_y_pos;
 	int paddle_h, paddle_center;
+	float ai_spd;
 };

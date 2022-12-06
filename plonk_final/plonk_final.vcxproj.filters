@@ -36,7 +36,7 @@
     <ClCompile Include="main_menu.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
-    <ClCompile Include="main_game.cpp">
+    <ClCompile Include="one_p_game.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
     <ClCompile Include="ball.cpp">
@@ -51,12 +51,15 @@
     <ClCompile Include="paddle_ai.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="two_p_game.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_state.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="main_game.h">
+    <ClInclude Include="one_p_game.h">
       <Filter>Header Files\States</Filter>
     </ClInclude>
     <ClInclude Include="main_menu.h">
@@ -79,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="paddle.h">
       <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="two_p_game.h">
+      <Filter>Header Files\States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
